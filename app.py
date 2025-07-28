@@ -3,6 +3,7 @@ import pandas as pd
 import requests
 import plotly.graph_objects as go
 from datetime import datetime, timedelta
+import certifi
 
 # PHP API のURL（実際のサーバーに合わせて変更）
 API_URL = "https://hisseki-misaki.sakura.ne.jp/raspberrypi/get_sensor_data.php"
@@ -13,7 +14,7 @@ def fetch_data(start_date: str, end_date: str) -> pd.DataFrame:
         "end": end_date
     }
     st.text(params)
-    response = requests.get(API_URL, params=params)
+    response = requests.get(API_URL, params=params, verify=False)
     response.raise_for_status()
     return pd.DataFrame(response.json())
 
