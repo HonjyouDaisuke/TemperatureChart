@@ -14,7 +14,7 @@ def fetch_data(start_date: str, end_date: str) -> pd.DataFrame:
         "end": end_date
     }
     st.text(params)
-    response = requests.get(API_URL, params=params, verify=False)
+    response = requests.get(API_URL, params=params)
     response.raise_for_status()
     return pd.DataFrame(response.json())
 
